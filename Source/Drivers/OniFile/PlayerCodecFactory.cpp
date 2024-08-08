@@ -37,7 +37,7 @@ namespace oni_file {
 //---------------------------------------------------------------------------
 XnStatus PlayerCodecFactory::Create(XnCodecID nCodecID, PlayerSource* pSource, XnCodec** ppCodec)
 {
-	OniStatus rc;
+	OniStatus rc0;
 	XnCodec* pCodec = NULL;
 
 	switch (nCodecID)
@@ -57,8 +57,8 @@ XnStatus PlayerCodecFactory::Create(XnCodecID nCodecID, PlayerSource* pSource, X
 			// first we need to find max depth
 			int nMaxDepth;
 			int dataSize = sizeof(nMaxDepth);
-			rc = pSource->GetProperty(ONI_STREAM_PROPERTY_MAX_VALUE, &nMaxDepth, &dataSize);
-			if (rc != ONI_STATUS_OK)
+			rc0 = pSource->GetProperty(ONI_STREAM_PROPERTY_MAX_VALUE, &nMaxDepth, &dataSize);
+			if (rc0 != ONI_STATUS_OK)
 			{
 				return XN_STATUS_ERROR;
 			}
@@ -76,8 +76,8 @@ XnStatus PlayerCodecFactory::Create(XnCodecID nCodecID, PlayerSource* pSource, X
 			// check what is the output format
 			OniVideoMode videoMode;
 			int dataSize = sizeof(videoMode);
-			rc = pSource->GetProperty(ONI_STREAM_PROPERTY_VIDEO_MODE, &videoMode, &dataSize);
-			if (rc != ONI_STATUS_OK)
+			rc0 = pSource->GetProperty(ONI_STREAM_PROPERTY_VIDEO_MODE, &videoMode, &dataSize);
+			if (rc0 != ONI_STATUS_OK)
 			{
 				return XN_STATUS_ERROR;
 			}

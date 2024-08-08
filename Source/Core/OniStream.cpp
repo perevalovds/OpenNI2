@@ -25,7 +25,8 @@
 #include "OniRecorder.h"
 #include "XnLockGuard.h"
 
-#include <math.h>
+//#include <math.h>
+#include <cmath>
 
 #define STREAM_DESTROY_THREAD_TIMEOUT			2000
 

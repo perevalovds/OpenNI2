@@ -275,10 +275,10 @@ public:
 	@param [in] resolutionX Desired new horizontal resolution in pixels.
 	@param [in] resolutionY Desired new vertical resolution in pixels.
 	*/
-	void setResolution(int resolutionX, int resolutionY)
+	void setResolution(int resolutionX0, int resolutionY0)
 	{
-		this->resolutionX = resolutionX;
-		this->resolutionY = resolutionY;
+		this->resolutionX = resolutionX0;
+		this->resolutionY = resolutionY0;
 	}
 
 	/**
@@ -287,7 +287,7 @@ public:
 	video modes.
 	@param [in] fps Desired new frame rate, measured in frames per second.
 	*/
-	void setFps(int fps) { this->fps = fps; }
+	void setFps(int fps0) { this->fps = fps0; }
 
 	friend class SensorInfo;
 	friend class VideoStream;

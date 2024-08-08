@@ -346,16 +346,16 @@ XnStatus PlayerNode::SeekToFrameAbsolute(XnUInt32 nNodeID, XnUInt32 nDestFrame)
 	XN_ASSERT((nDestFrame > 0) && (nDestFrame <= pPlayerNodeInfo->nFrames));
 	XN_VALIDATE_INPUT_PTR(m_pNodeNotifications);
 
-	XnStatus nRetVal = XN_STATUS_OK;
+	XnStatus nRetVal0 = XN_STATUS_OK;
 
 	if (nDestFrame == pPlayerNodeInfo->nCurFrame)
 	{
 		//Just go back to position of current frame
-		nRetVal = SeekStream(XN_OS_SEEK_SET, pPlayerNodeInfo->nLastDataPos);
-		XN_IS_STATUS_OK(nRetVal);
+		nRetVal0 = SeekStream(XN_OS_SEEK_SET, pPlayerNodeInfo->nLastDataPos);
+		XN_IS_STATUS_OK(nRetVal0);
 		// and re-read it
-		nRetVal = ReadNext();
-		XN_IS_STATUS_OK(nRetVal);
+		nRetVal0 = ReadNext();
+		XN_IS_STATUS_OK(nRetVal0);
 
 		return XN_STATUS_OK;
 	}
@@ -372,10 +372,10 @@ XnStatus PlayerNode::SeekToFrameAbsolute(XnUInt32 nNodeID, XnUInt32 nDestFrame)
 			if (m_aSeekTempArray[i] != NULL)
 			{
 				// read data
-				nRetVal = SeekStream(XN_OS_SEEK_SET, m_aSeekTempArray[i]->nSeekPos);
-				XN_IS_STATUS_OK(nRetVal);
-				nRetVal = ReadNext();
-				XN_IS_STATUS_OK(nRetVal);
+				nRetVal0 = SeekStream(XN_OS_SEEK_SET, m_aSeekTempArray[i]->nSeekPos);
+				XN_IS_STATUS_OK(nRetVal0);
+				nRetVal0 = ReadNext();
+				XN_IS_STATUS_OK(nRetVal0);
 
 				// check for latest position. This will be directly after the frame we seeked to.
 				XnUInt64 nPos = TellStream();
@@ -1700,8 +1700,8 @@ XnStatus PlayerNode::SeekToTimeStampAbsolute(XnUInt64 nDestTimeStamp)
 				//Read rest of record and handle it normally
 				nRetVal = Read(m_pRecordBuffer + record.HEADER_SIZE, record.GetSize() - record.HEADER_SIZE, nBytesRead);
 				XN_IS_STATUS_OK(nRetVal);
-				Record record(m_pRecordBuffer, RECORD_MAX_SIZE, m_bIs32bitFileFormat);
-				nRetVal = HandleRecord(record, TRUE);
+				Record record0(m_pRecordBuffer, RECORD_MAX_SIZE, m_bIs32bitFileFormat);
+				nRetVal = HandleRecord(record0, TRUE);
 				XN_IS_STATUS_OK(nRetVal);
 				break;
 			}

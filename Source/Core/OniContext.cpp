@@ -416,9 +416,9 @@ OniStatus Context::deviceOpen(const char* uri, const char* mode, OniDeviceHandle
 
 	if (pMyDevice == NULL)
 	{
-		for (xnl::List<DeviceDriver*>::Iterator iter = m_deviceDrivers.Begin(); iter != m_deviceDrivers.End() && pMyDevice == NULL; ++iter)
+		for (xnl::List<DeviceDriver*>::Iterator iter0 = m_deviceDrivers.Begin(); iter0 != m_deviceDrivers.End() && pMyDevice == NULL; ++iter0)
 		{
-			if ((*iter)->tryDevice(deviceURI))
+			if ((*iter0)->tryDevice(deviceURI))
 			{
 				for (xnl::List<Device*>::Iterator iter = m_devices.Begin(); iter != m_devices.End(); ++iter)
 				{

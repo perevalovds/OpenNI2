@@ -254,10 +254,10 @@ openni::Status openDevice(const char* uri, DeviceConfig config)
 
 openni::Status openDeviceFromList(DeviceConfig config)
 {
-	openni::Status rc = openni::OpenNI::initialize();
-	if (rc != openni::STATUS_OK)
+	openni::Status rc0 = openni::OpenNI::initialize();
+	if (rc0 != openni::STATUS_OK)
 	{
-		return rc;
+		return rc0;
 	}
 
 	openni::Array<openni::DeviceInfo> deviceList;
@@ -286,9 +286,9 @@ openni::Status openDeviceFromList(DeviceConfig config)
 
 	g_device.open(deviceList[chosen-1].getUri());
 
-	if (rc != openni::STATUS_OK)
+	if (rc0 != openni::STATUS_OK)
 	{
-		return rc;
+		return rc0;
 	}
 
 	if (0 != openCommon(g_device, config))

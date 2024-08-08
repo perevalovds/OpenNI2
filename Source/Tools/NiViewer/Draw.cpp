@@ -1286,10 +1286,10 @@ void drawPointerMode(IntPair* pPointer)
 			glEnd();
 
 			// place a label under, and in the middle of, that line.
-			XnUInt32 chars;
-			xnOSStrFormat(buf, sizeof(buf), &chars, "%d", i);
+			XnUInt32 chars0;
+			xnOSStrFormat(buf, sizeof(buf), &chars0, "%d", i);
 			glColor3f(1,0,0);
-			glRasterPos2i(xPos - chars*nCharWidth/2, WIN_SIZE_Y - 40);
+			glRasterPos2i(xPos - chars0*nCharWidth/2, WIN_SIZE_Y - 40);
 			glPrintString(GLUT_BITMAP_HELVETICA_18,buf);
 		}
 

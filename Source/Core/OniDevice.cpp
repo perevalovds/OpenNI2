@@ -134,7 +134,7 @@ VideoStream* Device::createStream(OniSensorType sensorType)
 		return NULL;
 	}
 
-	xnl::AutoCSLocker lock(m_cs);
+	xnl::AutoCSLocker lock0(m_cs);
 	if (m_sensors[sensorType] == NULL)
 	{
 		m_sensors[sensorType] = XN_NEW(Sensor, m_errorLogger, m_frameManager, m_driverHandler);

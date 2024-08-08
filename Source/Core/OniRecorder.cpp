@@ -623,11 +623,11 @@ void fillXnSupportedPixelFormats(XnSupportedPixelFormats &xnSPF, OniPixelFormat 
     xnOSMemSet(&xnSPF, 0, sizeof(xnSPF));
     switch(toXnPixelFormat(oniFormat))
     {
-    case XN_PIXEL_FORMAT_RGB24:			xnSPF.m_bRGB24		= 1; break;
-    case XN_PIXEL_FORMAT_YUV422:		xnSPF.m_bYUV422		= 1; break;
-    case XN_PIXEL_FORMAT_GRAYSCALE_8_BIT:	xnSPF.m_bGrayscale8Bit	= 1; break;
-    case XN_PIXEL_FORMAT_GRAYSCALE_16_BIT:	xnSPF.m_bGrayscale16Bit	= 1; break;
-    case XN_PIXEL_FORMAT_MJPEG:			xnSPF.m_bMJPEG		= 1; break;
+    case XN_PIXEL_FORMAT_RGB24:			xnSPF.m_bRGB24		= -1; break;
+    case XN_PIXEL_FORMAT_YUV422:		xnSPF.m_bYUV422		= -1; break;
+    case XN_PIXEL_FORMAT_GRAYSCALE_8_BIT:	xnSPF.m_bGrayscale8Bit	= -1; break;
+    case XN_PIXEL_FORMAT_GRAYSCALE_16_BIT:	xnSPF.m_bGrayscale16Bit	= -1; break;
+    case XN_PIXEL_FORMAT_MJPEG:			xnSPF.m_bMJPEG		= -1; break;
     }
 }
 

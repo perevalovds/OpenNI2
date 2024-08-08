@@ -21,7 +21,8 @@
 #ifndef _XN_MATH_H_
 #define _XN_MATH_H_
 
-#include <math.h>
+//#include <math.h>
+#include <cmath>
 #include <XnPlatform.h>
 
 namespace xnl
