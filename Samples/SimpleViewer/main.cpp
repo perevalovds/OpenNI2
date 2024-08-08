@@ -75,7 +75,7 @@ int main(int argc, char** argv)
 		printf("SimpleViewer: Couldn't find color stream:\n%s\n", openni::OpenNI::getExtendedError());
 	}
 
-	if (!depth.isValid() || !color.isValid())
+	if (!depth.isValid() && !color.isValid())
 	{
 		printf("SimpleViewer: No valid streams. Exiting\n");
 		openni::OpenNI::shutdown();
