@@ -1,5 +1,12 @@
 # OpenNI
 
+## perevalovds fork notes
+
+- I updated the code to be compiled on VS 2019, 64 bit, except cameras drivers (I put them as dll).
+
+- I added function for faster creating point cloud
+
+## Original text
 **Structure Core customers:** OpenNI does not currently support Structure Core. To start developing with Structure Core download *Structure SDK (Cross-Platform)* on the [Developer Portal](https://developer.structure.io/sdk).
 
 

@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 	case 1:
 		if (deviceList.getSize() < 2)
 		{
-			printf("Missing devices\n");
+			printf("Missing devices (expecting at least 2 devices)\n");
 			openni::OpenNI::shutdown();
 			return 1;
 		}
