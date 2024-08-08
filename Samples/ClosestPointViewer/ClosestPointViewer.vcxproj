@@ -115,7 +115,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glut64.lib;OpenNI2.lib;MWClosestPoint.lib</AdditionalDependencies>
+      <AdditionalDependencies>glut64.lib;OpenNI2d.lib;MWClosestPoint.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(OutDir);..\..\ThirdParty\GL</AdditionalLibraryDirectories>
       <TreatLinkerWarningAsErrors>true</TreatLinkerWarningAsErrors>
     </Link>
