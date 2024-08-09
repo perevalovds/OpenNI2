@@ -389,6 +389,50 @@ void ONI_CALLBACK_TYPE VideoStream::stream_PropertyChanged(void* /*streamHandle*
     }
 }
 
+
+// @perevalovds
+/*
+	Values for converting packet of points from depth to world.
+	How to apply for given x=0..w-1, y=0..h-1, depthZ = pDepth[x+w*y]:
+
+	float normalizedX = x * resolutionXInv - .5f;
+	float normalizedY = .5f - y * resolutionYInv;
+
+	worldX = normalizedX * depthZ * xzFactor;
+	worldY = normalizedY * depthZ * yzFactor;
+	worldZ = depthZ * zFactor;
+*/
+
+OniStatus VideoStream::getDepthToWorldCoeff(
+	float* resolutionXInv,
+	float* resolutionYInv,
+	float* xzFactor,
+	float* yzFactor,
+	float* zFactor
+)
+{
+	if (m_pSensorInfo->sensorType != ONI_SENSOR_DEPTH)
+	{
+		m_errorLogger.Append("getDepthToWorldCoeff: Stream is not from DEPTH\n");
+		return ONI_STATUS_NOT_SUPPORTED;
+	}
+
+	*resolutionXInv = 1.f / m_worldConvertCache.resolutionX;
+	*resolutionYInv = 1.f / m_worldConvertCache.resolutionY;
+
+	OniVideoMode videoMode;
+	int size = sizeof(videoMode);
+	getProperty(ONI_STREAM_PROPERTY_VIDEO_MODE, &videoMode, &size);
+
+	float const convertToMillimeters = (videoMode.pixelFormat == ONI_PIXEL_FORMAT_DEPTH_100_UM) ? 10.f : 1.f;
+	*xzFactor = m_worldConvertCache.xzFactor / convertToMillimeters;
+	*yzFactor = m_worldConvertCache.yzFactor / convertToMillimeters;
+	*zFactor = 1.f / convertToMillimeters;
+
+	return ONI_STATUS_OK;
+}
+
+
 OniStatus VideoStream::convertDepthToWorldCoordinates(float depthX, float depthY, float depthZ, float* pWorldX, float* pWorldY, float* pWorldZ)
 {
 	if (m_pSensorInfo->sensorType != ONI_SENSOR_DEPTH)

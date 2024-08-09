@@ -2388,6 +2388,8 @@ Note that converting from Depth to World coordinates is relatively expensive com
 the entire raw depth map to World coordinates.  A better approach is to have your computer vision algorithm work in Depth
 coordinates for as long as possible, and only converting a few specific points to World coordinates right before output.
 
+For converting the whole depth frame to world, use DepthToWorldCoeff
+
 Note that when converting from Depth to World or vice versa, the Z value remains the same.
 */
 class CoordinateConverter
@@ -2456,6 +2458,46 @@ public:
 	static Status convertDepthToWorld(const VideoStream& depthStream, float depthX, float depthY, float depthZ, float* pWorldX, float* pWorldY, float* pWorldZ)
 	{
 		return (Status)oniCoordinateConverterDepthToWorld(depthStream._getHandle(), depthX, depthY, depthZ, pWorldX, pWorldY, pWorldZ);
+	}
+
+	// @perevalovds
+	/**
+	Values for converting packet of points from depth to world.
+	To get use getDepthToWorldCoeff()
+	
+	How to apply for given x=0..w-1, y=0..h-1, depthZ = pDepth[x+w*y]:
+	
+	float normalizedX = x * resolutionXInv - .5f;
+	float normalizedY = .5f - y * resolutionYInv;
+	
+	worldX = normalizedX * depthZ * xzFactor;
+	worldY = normalizedY * depthZ * yzFactor;
+	worldZ = depthZ * zFactor;
+	*/
+	struct DepthToWorldCoeff {
+		float resolutionXInv = -1.f;
+		float resolutionYInv = -1.f;
+
+		float xzFactor = -1.f;
+		float yzFactor = -1.f;
+		float zFactor = -1.f;
+	};
+
+	// @perevalovds
+	/**
+		Getting values for converting packet of points from depth to world.
+		See DepthToWorldCoeff definition on the details of the usage.
+	*/
+	static DepthToWorldCoeff getDepthToWorldCoeff(const VideoStream& depthStream) {
+		DepthToWorldCoeff coeff;
+		oniCoordinateConverterGetDepthToWorldCoeff(depthStream._getHandle(),
+			&coeff.resolutionXInv,
+			&coeff.resolutionYInv,
+			&coeff.xzFactor,
+			&coeff.yzFactor,
+			&coeff.zFactor
+		);
+		return coeff;
 	}
 
 	/**

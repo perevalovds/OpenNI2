@@ -508,6 +508,24 @@ ONI_C_API OniStatus oniCoordinateConverterWorldToDepth(OniStreamHandle depthStre
 	return depthStream->pStream->convertWorldToDepthCoordinates(worldX, worldY, worldZ, pDepthX, pDepthY, pDepthZ);
 }
 
+// @perevalovds
+ONI_C_API OniStatus oniCoordinateConverterGetDepthToWorldCoeff(OniStreamHandle depthStream,
+	float* resolutionXInv,
+	float* resolutionYInv,
+	float* xzFactor,
+	float* yzFactor,
+	float* zFactor
+) 
+{
+	g_Context.clearErrorLogger();
+	return depthStream->pStream->getDepthToWorldCoeff(
+		resolutionXInv, 
+		resolutionYInv,
+		xzFactor,
+		yzFactor,
+		zFactor);
+}
+
 ONI_C_API OniStatus oniCoordinateConverterDepthToColor(OniStreamHandle depthStream, OniStreamHandle colorStream, int depthX, int depthY, OniDepthPixel depthZ, int* pColorX, int* pColorY)
 {
 	g_Context.clearErrorLogger();

@@ -188,6 +188,15 @@ ONI_C_API OniStatus oniRecorderDestroy(OniRecorderHandle* pRecorder);
 
 ONI_C_API OniStatus oniCoordinateConverterDepthToWorld(OniStreamHandle depthStream, float depthX, float depthY, float depthZ, float* pWorldX, float* pWorldY, float* pWorldZ);
 
+// @perevalovds
+ONI_C_API OniStatus oniCoordinateConverterGetDepthToWorldCoeff(OniStreamHandle depthStream,
+	float* resolutionXInv,
+	float* resolutionYInv,
+	float* xzFactor,
+	float* yzFactor,
+	float* zFactor
+);
+
 ONI_C_API OniStatus oniCoordinateConverterWorldToDepth(OniStreamHandle depthStream, float worldX, float worldY, float worldZ, float* pDepthX, float* pDepthY, float* pDepthZ);
 
 ONI_C_API OniStatus oniCoordinateConverterDepthToColor(OniStreamHandle depthStream, OniStreamHandle colorStream, int depthX, int depthY, OniDepthPixel depthZ, int* pColorX, int* pColorY);

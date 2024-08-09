@@ -85,6 +85,27 @@ public:
 	OniStatus setFrameBufferAllocator(OniFrameAllocBufferCallback alloc, OniFrameFreeBufferCallback free, void* pCookie);
 
 	OniStatus convertDepthToWorldCoordinates(float depthX, float depthY, float depthZ, float* pWorldX, float* pWorldY, float* pWorldZ);
+	
+	// @perevalovds
+	/*
+	Values for converting packet of points from depth to world.
+	How to apply for given x=0..w-1, y=0..h-1, depthZ = pDepth[x+w*y]:
+	
+	float normalizedX = x * resolutionXInv - .5f;
+	float normalizedY = .5f - y * resolutionYInv;
+	
+	worldX = normalizedX * depthZ * xzFactor;
+	worldY = normalizedY * depthZ * yzFactor;
+	worldZ = depthZ * zFactor;
+	*/
+	OniStatus getDepthToWorldCoeff(
+		float* resolutionXInv,
+		float* resolutionYInv,
+		float* xzFactor,
+		float* yzFactor,
+		float* zFactor
+	);
+	
 	OniStatus convertWorldToDepthCoordinates(float worldX, float worldY, float worldZ, float* pDepthX, float* pDepthY, float* pDepthZ);
 	OniStatus convertDepthToColorCoordinates(VideoStream* colorStream, int depthX, int depthY, OniDepthPixel depthZ, int* pColorX, int* pColorY);
 
