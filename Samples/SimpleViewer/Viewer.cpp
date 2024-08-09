@@ -148,11 +148,13 @@ openni::Status SampleViewer::run()	//Does not return
 }
 void SampleViewer::display()
 {
+
+	// Check case of zero timeout
 	int changedIndex;
-	openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIndex);
+	openni::Status rc = openni::OpenNI::waitForAnyStream(m_streams, 2, &changedIndex, 0);
 	if (rc != openni::STATUS_OK)
 	{
-		printf("Wait failed\n");
+		// printf("Wait failed\n");
 		return;
 	}
 

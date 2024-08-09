@@ -733,6 +733,9 @@ OniStatus Context::waitForStreams(OniStreamHandle* pStreams, int streamCount, in
 			deviceList[j]->tryManualTrigger();
 		}
 
+		// @perevalovds: timeout can be 0
+		if (timeout == 0) break;
+
 		if(timeout != ONI_TIMEOUT_FOREVER)
 		{
 			xnOSQueryTimer(workTimer, &passedTime);

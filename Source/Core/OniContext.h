@@ -86,6 +86,7 @@ public:
 	void frameRelease(OniFrame* pFrame);
 	void frameAddRef(OniFrame* pFrame);
 
+	// @perevalovds: timeout can be 0
 	OniStatus waitForStreams(OniStreamHandle* pStreams, int streamCount, int* pStreamIndex, int timeout);
 
 	OniStatus enableFrameSync(OniStreamHandle* pStreams, int numStreams, OniFrameSyncHandle* pFrameSyncHandle);

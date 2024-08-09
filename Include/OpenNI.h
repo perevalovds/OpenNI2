@@ -2154,6 +2154,7 @@ public:
 	@param [in] streamCount The number of streams in @c pStreams
 	@param [out] pReadyStreamIndex The index of the first stream that has new frame available.
 	@param [in] timeout [Optional] A timeout before returning if no stream has new data. Default value is @ref TIMEOUT_FOREVER.
+	perevalovds: timeout can be 0
 	*/
 	static Status waitForAnyStream(VideoStream** pStreams, int streamCount, int* pReadyStreamIndex, int timeout = TIMEOUT_FOREVER)
 	{
